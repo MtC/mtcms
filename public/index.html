@@ -1,0 +1,133 @@
+<!-- @annotation:tour beginning --> 
+<!DOCTYPE html>
+<html data-ng-app="mtcms">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" href="/scss_mtc/mtcms.scss">-->
+    <link rel="stylesheet" href="/bower_components/jstree/dist/themes/default/style.min.css">
+    <link rel="stylesheet" href="/scss/fa/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/css/testing.css">
+</head>
+<body data-ng-controller="MainCtrl">
+    <header>
+        <ul role="menubar" draggable="true">
+            <li role="menuitem" data-ng-class="menubar.menu ? 'menubar-item menu-show' : 'menubar-item menu-hide'">
+                <nav role="navigation">
+                    <ul role="menu" data-ng-click="menuToggle()">
+                        <li data-ng-repeat="item in sidebar" role="menuitem" data-ng-click="goto(item.link)">{{item.name}}</li>
+                    </ul>
+                </nav>
+            </li>
+            <li draggable="true" role="menuitem" data-ng-click="menuToggle()" data-ng-class="menubar.menu ? 'menubar-item menu-button-pushed' : 'menubar-item menu-button'">
+                <i class="fa fa-bars"></i>
+            </li>
+            <li role="presentation" class="flexer"></li>
+            <li draggable="true" data-ng-repeat="item in menubar" role="menuitem" class="menubar-item" data-ng-click="goto(item.link)">
+                {{item.name}}
+            </li>
+        </ul>
+    </header>
+    {{testing}}
+    <div id="container">
+        <ul>
+            <li data-jstree='{"icon":"fa fa-folder"}'>test 1
+                <ul>
+                    <li data-jstree='{"icon":"fa fa-file"}'>test 11</li>
+                    <li data-jstree='{"icon":"fa fa-file"}'>test 12</li>
+                    <li data-jstree='{"icon":"fa fa-file"}'>test 13</li>
+                </ul>
+            </li>
+            <li data-jstree='{"icon":"fa fa-file"}'>test 2</li>
+            <li data-jstree='{"icon":"fa fa-file"}'>test 3</li>
+        </ul>
+    </div>
+    <main role="main">
+        <section role="article">
+            <h1>mtc²ms</h1>
+            <article data-ui-view></article>
+        </section>
+    </main>
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="/bower_components/jstree/dist/jstree.min.js"></script>
+    <script type="text/javascript" src="index.angular.js"></script>
+    <script type="text/javascript">
+        var $buoop = {};
+        $buoop.ol = window.onload;
+        window.onload=function() {
+            try {
+                if ($buoop.ol) $buoop.ol();
+            } catch (e) {}
+            var e = document.createElement("script");
+            e.setAttribute("type", "text/javascript");
+            e.setAttribute("src", "//browser-update.org/update.js");
+            document.body.appendChild(e);
+        }
+    </script>
+    <script type="text/javascript">
+        var contextmenu = {
+            "create": "aanmaken",
+            "edit": "aanpassen",
+            "delete": "verwijderen"
+        }
+        var tada = {
+  id          : 1,
+  text        : "test 1",
+  icon        : "fa fa-file fa-fw",
+  state       : {
+    opened    : false,
+    disabled  : false,
+    selected  : false
+  },
+  children    : [],
+  li_attr     : {},
+  a_attr      : {}
+};
+        $(function() {
+            $('#container').jstree({
+                "check_callback": true,
+                    "core": {
+                        "data": [tada]
+                },
+                "contextmenu": {
+                    "items": function () {
+                        return {
+                            "create": {
+                                "label": contextmenu.create,
+                                "icon": "fa fa-plus fa-fw",
+                                "action": function () {
+                                    console.log('create');
+                                }
+                            },
+                            "edit": {
+                                "label": contextmenu.edit,
+                                "icon": "fa fa-edit fa-fw",
+                                "action": function () {
+                                    console.log('change');
+                                }
+                            },
+                            "delete": {
+                                "label": contextmenu['delete'],
+                                "icon": "fa fa-eraser fa-fw"
+                            }
+                        }
+                    }
+                },
+                "dnd": {
+                    "is_draggable": true
+                },
+                "plugins" : [ "contextmenu", "dnd", "wholerow", "unique" ]
+            });
+        });
+        $('#container').on("changed.jstree", function (e, data) {
+            console.log(data.selected);
+        });
+
+    </script>
+</body>
+</html>

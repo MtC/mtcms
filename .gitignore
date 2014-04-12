@@ -1,4 +1,10 @@
+/.sass-cache
+/angular.js
+/bower_components
 /node_modules
+/scss
 /vendor
-startup.sh
 .codio
+.settings
+Gruntfile.js
+startup.sh

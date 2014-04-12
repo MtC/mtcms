@@ -1,5 +1,13 @@
 {
     "require": {
-        "slim/slim": "2.*"
+        "slim/slim": "2.*",
+        "gabordemooij/redbean": "dev-master",
+        "firebase/php-jwt": "dev-master"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "mtc2ms":        "vendor_mtc/"
+        }
     }
 }

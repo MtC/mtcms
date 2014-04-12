@@ -1,0 +1,139 @@
+/*
+    Document   : mtcms/_index.scss
+    Created on : 2014-03-29 10:41 PM
+    Author     : MtC
+    Description:
+    ...
+*/
+
+
+
+
+$menu-width: 18rem;
+$header-bg: lightblue;
+
+header {
+    background-color: $header-bg;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    @include menubar;
+    .menubar-item {
+        
+        margin: 0 0 0 0.2rem;
+        padding: 0;
+        &:first-child {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            nav {
+                width: $menu-width - 2;
+                margin: 0;
+                padding: 0;
+                ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    li {
+                        background-color: red;
+                        padding: 0.2rem 2rem;
+                        margin-bottom: 0.4rem;
+                        border-radius: 0.2rem 2rem;
+                        cursor: pointer;
+                        &:first-child {
+                            margin-top: 3.4rem;
+                        }
+                        &:nth-child(odd) {
+                            border-radius: 2rem 0.2rem;
+                        }  
+                    }
+                }
+            }
+        }
+        > a {
+            display: none;
+        }
+        /*&:first-child {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            nav {
+                position: absolute;
+                //padding: 0;
+                @include box-sizing(border-box);
+                border-right: 3rem solid black;
+                background-color: grey;
+                width: $menu-width;
+                ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    border-right: 3rem solid blue;
+                    //@include box-sizing(border-box);
+                    li {
+                        position: relative;
+                        //left: 1rem;
+                        background-color: red;
+                        margin: 0;
+                        padding: 0;
+                        //border-bottom: 0.5rem solid black;
+                        width: $menu-width;
+                        a {
+                            display: block;
+                            width: 100%;
+                            padding: 0.5rem 0 0.5rem 2rem;
+                            border-top: 0.5rem solid transparent;
+                            //border-right: 3rem solid black;
+                            background-color: yellow;
+                            @include box-sizing(border-box);
+                        }
+                    }
+                }
+            }
+        }*/
+        &:not(.flexer) {
+            a {
+                background-color:     grey;
+            }
+            padding:              0.5rem 1rem;
+            background-color:     grey;
+            @include box-sizing(border-box);
+        }
+    }
+}
+
+main {
+    width: 100%;
+    padding-top: 3.6rem;
+    @include display-box;
+    > section {
+        position: absolute;
+        display: block;
+    }
+    section {
+        padding: 1rem 3rem;
+        @include box-flex(1);
+        @include box-sizing(border-box);
+    }
+}
+
+.menu-show {
+    left: 0;
+    @include transition (all 1.0s ease-in-out);
+}
+
+.menu-hide {
+    left: -$menu-width;
+    @include transition (all 1.0s ease-in-out);
+}
+
+li.menubar-item.menu-button {
+    margin-left: 0;
+    @include transition (all 1.0s ease-in-out);
+}
+
+li.menubar-item.menu-button-pushed {
+    margin-left: $menu-width;
+    @include transition (all 1.0s ease-in-out);
+}

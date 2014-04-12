@@ -1,0 +1,15 @@
+/*
+    Document   : public/css/testing.css
+    Created on : 2014-04-12 11:53 AM
+    Author     : MtC
+    Description:
+    ...
+*/
+
+root {
+    display: block;
+}
+
+#container {
+    width: 250px;
+}

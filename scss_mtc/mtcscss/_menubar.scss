@@ -1,0 +1,12 @@
+@mixin menubar {
+    [role="menubar"] {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        @include display-box;
+        @include box-orient(horizontal);
+        li.flexer {
+            @include box-flex(1);
+        }
+    }
+}
